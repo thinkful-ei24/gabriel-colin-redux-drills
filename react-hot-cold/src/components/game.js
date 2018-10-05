@@ -19,11 +19,11 @@ export default function Game(props) {
   console.log('game');
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <main role="main">
         <GuessSection />
         <StatusSection />
-        {/* <InfoSection /> */}
+        <InfoSection />
       </main>
     </div>
   );
