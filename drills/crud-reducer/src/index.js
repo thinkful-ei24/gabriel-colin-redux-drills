@@ -10,6 +10,8 @@ store.dispatch(updateItem({id: 0, name: 'Food'}));
 store.dispatch(updateItem({id: 1, name: 'Bard'}));
 store.dispatch(updateItem({id: 2, name: 'Bash'}));
 
+
+
 store.dispatch(deleteItem({id: 1}));
 
 // We expect to see:
