@@ -1,4 +1,10 @@
-import { UPDATE_GUESSES, UPDATE_FEEDBACK, AURAL_STATUS, RESTART_GAME, restartGame } from '../actions/actions';
+import {
+  UPDATE_GUESSES,
+  UPDATE_FEEDBACK,
+  AURAL_STATUS,
+  RESTART_GAME,
+  restartGame
+} from '../actions/actions';
 
 const initialState = {
   guesses: [],

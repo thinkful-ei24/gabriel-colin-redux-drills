@@ -40,7 +40,7 @@ export class GuessForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={e => this.onSubmit(e)}>
+      <form onSubmit={event => this.onSubmit(event)}>
         <input
           type="number"
           name="userGuess"

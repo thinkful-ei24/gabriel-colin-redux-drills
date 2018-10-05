@@ -24,18 +24,17 @@ const AURAL_STATUS = 'UPDATE_AURAL_STATUS';
 const auralStatus = auralStatus => ({
   type: AURAL_STATUS,
   auralStatus
-})
+});
 
 //Restart Game
 const RESTART_GAME = 'RESTART_GAME';
 const restartGame = () => ({
-    type: RESTART_GAME,
-    guesses: [],
-    feedback: 'Makeyour guess!',
-    auralStatus: '',
-    correctAnswer: Math.floor(Math.random() * 100) + 1
+  type: RESTART_GAME,
+  guesses: [],
+  feedback: 'Make your guess!',
+  auralStatus: '',
+  correctAnswer: Math.floor(Math.random() * 100) + 1
 });
-
 
 // Set correct answer
 const SET_CORRECT_ANSWER = 'SET_CORRECT_ANSWER';
