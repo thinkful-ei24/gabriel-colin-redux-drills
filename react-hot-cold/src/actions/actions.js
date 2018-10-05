@@ -20,7 +20,22 @@ const updateFeedback = feedback => ({
 });
 
 // Aural status
-const UPDATE_AURAL_STATUS = 'UPDATE_AURAL_STATUS';
+const AURAL_STATUS = 'UPDATE_AURAL_STATUS';
+const auralStatus = auralStatus => ({
+  type: AURAL_STATUS,
+  auralStatus
+})
+
+//Restart Game
+const RESTART_GAME = 'RESTART_GAME';
+const restartGame = () => ({
+    type: RESTART_GAME,
+    guesses: [],
+    feedback: 'Makeyour guess!',
+    auralStatus: '',
+    correctAnswer: Math.floor(Math.random() * 100) + 1
+});
+
 
 // Set correct answer
 const SET_CORRECT_ANSWER = 'SET_CORRECT_ANSWER';
@@ -29,7 +44,10 @@ export {
   UPDATE_GUESSES,
   updateGuesses,
   UPDATE_FEEDBACK,
-  UPDATE_AURAL_STATUS,
   SET_CORRECT_ANSWER,
-  updateFeedback
+  updateFeedback,
+  RESTART_GAME,
+  restartGame,
+  AURAL_STATUS,
+  auralStatus
 };
