@@ -3,7 +3,6 @@ import React from 'react';
 import './guess-form.css';
 
 // Redux imports
-import store from '../store/store';
 import { connect } from 'react-redux';
 import { updateGuesses, updateFeedback } from '../actions/actions';
 
@@ -16,26 +15,33 @@ export class GuessForm extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-
     const value = this.input.value;
-    const state = store.getState();
 
     if (isNaN(value)) {
-      // call update feedback action
-      store.dispatch(updateFeedback('Guess is not a number'));
-    } else if (state.guesses.find(guess => guess === parseInt(value))) {
-      store.dispatch(updateFeedback('You already guessed that!'));
+      // NaN
+      this.props.dispatch(updateFeedback('Guess is not a number'));
+    } else if (this.props.guesses.find(guess => guess == parseInt(value))) {
+      // guess was found in history
+      this.props.dispatch(updateFeedback('You already guessed that!'));
+    } else if (Math.abs(value - this.props.correctAnswer) > 15) {
+      // is cold
+      this.props.dispatch(updateGuesses(parseInt(value)));
+      this.props.dispatch(updateFeedback('That\'s a cold guess!'));
+    } else if (Math.abs(value - this.props.correctAnswer) < 15) {
+      // is hot
+      this.props.dispatch(updateGuesses(parseInt(value)));
+      this.props.dispatch(updateFeedback('That\'s a hot guess!'));
+    } else if (value === this.props.correctAnswer) {
+      // is correct
+      this.props.dispatch(updateGuesses(parseInt(value)));
+      this.props.dispatch(updateFeedback('Correct!!!'));
     } else {
-      // update the value using updateGuesses
-      store.dispatch(updateGuesses(parseInt(value)));
-      // TODO: finish the feedback updating
-      // update the feedback using updateFeedback
-      store.dispatch(updateFeedback('A guess was made!'));
+      // who knows what this is
+      this.props.dispatch(updateFeedback('I am confused'));
     }
+
     this.input.value = '';
     this.input.focus();
-
-    console.log(store.getState());
   }
 
   render() {
@@ -61,4 +67,11 @@ export class GuessForm extends React.Component {
   }
 }
 
-export default connect()(GuessForm);
+function mapStateToProps(state) {
+  return {
+    guesses: state.guesses,
+    correctAnswer: state.correctAnswer
+  };
+}
+
+export default connect(mapStateToProps)(GuessForm);

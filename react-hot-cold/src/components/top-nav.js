@@ -1,5 +1,4 @@
 import React from 'react';
-import store from '../store/store.js';
 import {
   restartGame,
   RESTART_GAME,
@@ -35,7 +34,7 @@ export function TopNav(props) {
             href="#what"
             className="what"
             aria-label="How to play"
-            onClick={() => store.dispatch(auralStatus(auralStatusText))}
+            onClick={() => props.dispatch(auralStatus(auralStatusText))}
           >
             What?
           </a>
@@ -46,7 +45,7 @@ export function TopNav(props) {
             href="#feedback"
             className="new"
             aria-label="Start a new game"
-            onClick={() => store.dispatch(restartGame())}
+            onClick={() => props.dispatch(restartGame())}
           >
             + New Game
           </a>
